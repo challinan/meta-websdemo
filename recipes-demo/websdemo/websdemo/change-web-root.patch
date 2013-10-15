@@ -1,0 +1,13 @@
+diff --git a/main.c b/main.c
+index fde7d9f..8f017dd 100644
+--- a/main.c
++++ b/main.c
+@@ -78,7 +78,7 @@ int main(int argc, char** argv)
+ 	
+ 	bopen(NULL, (60 * 1024), B_USE_MALLOC);
+ 	signal(SIGPIPE, SIG_IGN);
+-	chdir("/apps");
++	chdir("/var/www");
+ 	/* exit(1); */
+ 
+ /*

@@ -1,0 +1,44 @@
+diff --git a/main.c b/main.c
+index fde7d9f..fc60e3e 100644
+--- a/main.c
++++ b/main.c
+@@ -327,7 +327,7 @@ char_t *websGetCgiCommName()
+ 
+ 	sprintf(pname1, "/tmp/cgi%d", tempnamid++);
+ 	pname2 = bstrdup(B_L, pname1);
+-	free(pname1);
++	/* free(pname1); */
+ 	return pname2;
+ }
+ 
+diff --git a/misc.c b/misc.c
+index 33300fb..000bda3 100644
+--- a/misc.c
++++ b/misc.c
+@@ -49,7 +49,9 @@ enum flag {
+ 
+ static int 	dsnprintf(char_t **s, int size, char_t *fmt, va_list arg,
+ 				int msize);
++#if !defined __USE_XOPEN2K8 && !defined __USE_GNU
+ static int	strnlen(char_t *s, unsigned int n);
++#endif
+ static void	put_char(strbuf_t *buf, char_t c);
+ static void	put_string(strbuf_t *buf, char_t *s, int len,
+ 				int width, int prec, enum flag f);
+@@ -411,7 +413,7 @@ static int dsnprintf(char_t **s, int size, char_t *fmt, va_list arg, int msize)
+ /*
+  *	Return the length of a string limited by a given length
+  */
+-
++#if !defined __USE_XOPEN2K8 && !defined __USE_GNU
+ static int strnlen(char_t *s, unsigned int n)
+ {
+ 	unsigned int 	len;
+@@ -419,6 +421,7 @@ static int strnlen(char_t *s, unsigned int n)
+ 	len = gstrlen(s);
+ 	return min(len, n);
+ }
++#endif
+ 
+ /******************************************************************************/
+ /*

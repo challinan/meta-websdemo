@@ -12,7 +12,6 @@ S = "${WORKDIR}/git"
 
 SRC_URI = "git://github.com/challinan/webserver-demo.git;protocol=git \
 	   file://change-web-root.patch                              \
-	   file://websdemo-glibc-update.patch                        \
           "
 do_install() {
 	oe_runmake DESTDIR=${D} install
